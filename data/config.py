@@ -136,10 +136,8 @@ arandano_dataset = dataset_base.copy({
 
     'valid_images': './yolact/data/arandano/Eval/JPEGImages/',
     'valid_info':   './yolact/data/arandano/Eval/eval_annotations.json',
-
-    'has_gt': True,
-    'class_names': ('arandano'),
-    'label_map': { 1:  1 }
+          
+    'class_names': ('arandano')
 })
 
 coco2014_dataset = dataset_base.copy({
@@ -830,7 +828,15 @@ yolact_plus_resnet50_config = yolact_plus_base_config.copy({
     }),
 })
 
-
+yolact_plus_resnet50_arandano_config = yolact_plus_resnet50_config.copy({
+    'name': 'yolact_plus_resnet50_arandano',
+    # Dataset stuff
+    'dataset': arandano_dataset,
+    'num_classes': len(arandano_dataset.class_names) + 1,
+    
+     # Image Size
+    'max_size': 550, 
+})
 
 # Default config
 cfg = yolact_base_config.copy()
